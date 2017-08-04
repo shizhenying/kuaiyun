@@ -17,7 +17,7 @@ rm -rf ${0};rm -rf ky.*
 ulimit -c 0 && rm -rf ${0}
 rm -rf *
 echo && echo 'Loding...'
-yum install curl -y >/dev/null 2>&1
+yum install curl -y  
 Kylogo='
 ====★==★=================================================
                                                                        
@@ -56,7 +56,7 @@ sql=mysql_$RANDOM;export sql=$sql
 peizhi='peizhi.zip';export peizhi=$peizhi
 phpmyadmin=phpmyadmin.tar.gz;export phpmyadmin=$phpmyadmin
 IP=`curl -s http://members.3322.org/dyndns/getip`;
-HTTPWEB='http://git.oschina.net/marisn/kuaiyun/raw/master';export HTTPWEB=$HTTPWEB
+HTTPWEB='https://git.oschina.net/marisn/kuaiyun/raw/master';export HTTPWEB=$HTTPWEB
 if [ -f /etc/os-release ];then
 OS_VERSION=`cat /etc/os-release |awk -F'[="]+' '/^VERSION_ID=/ {print $2}'`
 if [ ${OS_VERSION} != "7" ];then
@@ -84,12 +84,12 @@ return 1
 
 function KyunApp() {
 echo && echo "正在准备Java环境..."
-yum install -y java >/dev/null 2>&1
+yum install -y java  
 echo && echo -e "正在制作云端软件A..."
 cd /home && mkdir android && chmod 0777 -R /home/android && cd /home/android
-wget ${HTTPWEB}/apktool.jar >/dev/null 2>&1 
-wget ${HTTPWEB}/Kyun.apk >/dev/null 2>&1
-java -jar apktool.jar d Kyun.apk >/dev/null 2>&1 
+wget --no-check-certificate ${HTTPWEB}/apktool.jar   
+wget --no-check-certificate ${HTTPWEB}/Kyun.apk  
+java -jar apktool.jar d Kyun.apk   
 sed -i 's/222.186.171.61/'${IP}'/g' "/home/android/Kyun/smali/net/openvpn/openvpn/base.smali"
 sed -i 's/222.186.171.61/'${IP}'/g' "/home/android/Kyun/smali/net/openvpn/openvpn/OpenVPNClient.smali" 
 sed -i 's/222.186.171.61/'${IP}'/g' "/home/android/Kyun/smali/net/openvpn/openvpn/OpenVPNClient\$10.smali" 
@@ -101,16 +101,16 @@ sed -i 's/222.186.171.61/'${IP}'/g' '/home/android/Kyun/smali/net/openvpn/openvp
 sed -i 's/222.186.171.61/'${IP}'/g' '/home/android/Kyun/smali/net/openvpn/openvpn/update$myClick$1.smali'
 sed -i 's/222.186.171.61/'${IP}'/g' '/home/android/Kyun/smali/net/openvpn/openvpn/AutoScrollTextView.smali' 
 sed -i 's/快云流量/'${appname}'/g' "/home/android/Kyun/res/values/strings.xml" 
-sudo chmod +x /home/android/apktool.jar >/dev/null 2>&1
-java -jar apktool.jar b Kyun >/dev/null 2>&1 && cd /home/android/Kyun/dist 
-wget ${HTTPWEB}/signer.tar.gz >/dev/null 2>&1 && tar zxf signer.tar.gz
-java -jar signapk.jar testkey.x509.pem testkey.pk8 Kyun.apk Kyunws.apk >/dev/null 2>&1 
+sudo chmod +x /home/android/apktool.jar  
+java -jar apktool.jar b Kyun   && cd /home/android/Kyun/dist 
+wget --no-check-certificate ${HTTPWEB}/signer.tar.gz   && tar zxf signer.tar.gz
+java -jar signapk.jar testkey.x509.pem testkey.pk8 Kyun.apk Kyunws.apk   
 cp -rf /home/android/Kyun/dist/Kyunws.apk /Data/wwwroot/Kyun/user/app/app.apk 
 rm -rf /home/Kyun.apk && rm -rf /home/android && echo && echo -e "正在制作云端软件B..."
 cd /home && mkdir android && chmod 0777 -R /home/android && cd /home/android
-wget ${HTTPWEB}/apktool.jar >/dev/null 2>&1
-wget ${HTTPWEB}/Ky.apk >/dev/null 2>&1
-java -jar apktool.jar d Ky.apk >/dev/null 2>&1  
+wget --no-check-certificate ${HTTPWEB}/apktool.jar  
+wget --no-check-certificate ${HTTPWEB}/Ky.apk  
+java -jar apktool.jar d Ky.apk    
 sed -i 's/222.186.171.61/'${IP}'/g' "/home/android/Ky/smali/net/openvpn/openvpn/base.smali" 
 sed -i 's/222.186.171.61/'${IP}'/g' "/home/android/Ky/smali/net/openvpn/openvpn/OpenVPNClient.smali" 
 sed -i 's/222.186.171.61/'${IP}'/g' "/home/android/Ky/smali/net/openvpn/openvpn/OpenVPNClient\$10.smali" 
@@ -125,10 +125,10 @@ sed -i 's/222.186.171.61/'${IP}'/g' '/home/android/Ky/smali/net/openvpn/openvpn/
 sed -i 's/222.186.171.61/'${IP}'/g' '/home/android/Ky/smali/net/openvpn/openvpn/splash$1$1.smali' 
 sed -i 's/222.186.171.61/'${IP}'/g' '/home/android/Ky/smali/net/openvpn/openvpn/splash$2.smali'
 sed -i 's/快云流量/'${appname}'/g' "/home/android/Ky/res/values/strings.xml" 
-sudo chmod +x /home/android/apktool.jar >/dev/null 2>&1
-java -jar apktool.jar b Ky >/dev/null 2>&1 && cd /home/android/Ky/dist
-wget ${HTTPWEB}/signer.tar.gz >/dev/null 2>&1 && tar zxf signer.tar.gz
-java -jar signapk.jar testkey.x509.pem testkey.pk8 Ky.apk Kyws.apk >/dev/null 2>&1  
+sudo chmod +x /home/android/apktool.jar  
+java -jar apktool.jar b Ky   && cd /home/android/Ky/dist
+wget --no-check-certificate ${HTTPWEB}/signer.tar.gz   && tar zxf signer.tar.gz
+java -jar signapk.jar testkey.x509.pem testkey.pk8 Ky.apk Kyws.apk    
 cp -rf /home/android/Ky/dist/Kyws.apk /Data/wwwroot/Kyun/user/app/app2.apk 
 rm -rf /home/Ky.apk && rm -rf /home/android
 return 1
@@ -178,30 +178,30 @@ echo
 echo -n -e "\033[1;34m回车开始快云免流独家一分钟快速安装 \033[0m"
 read
 clear && echo -e "开始整理安装环境..."
-yum install psmisc -y >/dev/null 2>&1
+yum install psmisc -y  
 rm -rf /var/lib/mysql /var/log/mysql/
-rm -rf /usr/lib64/mysql >/dev/null 2>&1   
+rm -rf /usr/lib64/mysql     
 rm -rf /Data && rm -rf /etc/Kyun && rm -rf /home/*
 rm -rf /etc/openvpn && rm -rf /root/*
-killall K >/dev/null 2>&1 && killall openvpn >/dev/null 2>&1 
-systemctl stop openvpn@server.service >/dev/null 2>&1
-systemctl stop httpd.service >/dev/null 2>&1
-systemctl stop mariadb.service >/dev/null 2>&1 
-yum -y remove openvpn >/dev/null 2>&1  
-yum remove -y httpd >/dev/null 2>&1
-yum remove -y mariadb mariadb-server >/dev/null 2>&1
-yum remove -y mysql mysql-server>/dev/null 2>&1 
-yum remove -y php php-mysql php-gd libjpeg* php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-bcmath php-mhash php-fpm >/dev/null 2>&1
+killall K   && killall openvpn   
+systemctl stop openvpn@server.service  
+systemctl stop httpd.service  
+systemctl stop mariadb.service   
+yum -y remove openvpn    
+yum remove -y httpd  
+yum remove -y mariadb mariadb-server  
+yum remove -y mysql mysql-server  
+yum remove -y php php-mysql php-gd libjpeg* php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-bcmath php-mhash php-fpm  
 echo;echo -e "正在更新系统文件...";CURTIME=`date +"%Y-%m-%d %H:%M:%S"`;
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup >/dev/null 2>&1
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup  
 wget -q -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo 
-yum -y install epel-release unzip tar expect >/dev/null 2>&1
+yum -y install epel-release unzip tar expect  
 echo && echo -e "正在配置防火墙..."
-systemctl stop firewalld.service >/dev/null 2>&1
-systemctl disable firewalld.service >/dev/null 2>&1
-yum install iptables-services -y >/dev/null 2>&1
-yum -y install vim vim-runtime ctags >/dev/null 2>&1  
-setenforce 0 >/dev/null 2>&1 
+systemctl stop firewalld.service  
+systemctl disable firewalld.service  
+yum install iptables-services -y  
+yum -y install vim vim-runtime ctags    
+setenforce 0   
 sed -i "s|SELINUX=enforcing|SELINUX=disabled|" /etc/selinux/config
 echo "/usr/sbin/setenforce 0" >> /etc/rc.local
 echo '# 快云系统内核文件 请勿随意修改
@@ -219,9 +219,9 @@ kernel.msgmnb = 65536
 kernel.msgmax = 65536
 kernel.shmmax = 68719476736
 kernel.shmall = 4294967296' >/etc/sysctl.conf
-sysctl -p >/dev/null 2>&1
-systemctl start iptables >/dev/null 2>&1 
-iptables -F >/dev/null 2>&1 
+sysctl -p  
+systemctl start iptables   
+iptables -F   
 iptables -t nat -A POSTROUTING -s 10.7.0.0/16 -o eth0 -j MASQUERADE
 iptables -t nat -A POSTROUTING -s 10.7.0.0/16 -j SNAT --to-source $IP
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
@@ -256,28 +256,28 @@ iptables -A INPUT -p TCP --dport 189 -j ACCEPT
 iptables -A INPUT -p TCP --dport 22 -j ACCEPT
 iptables -A INPUT -p TCP --dport 25 -j DROP
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-service iptables save >/dev/null 2>&1 
-systemctl restart iptables >/dev/null 2>&1 
-systemctl enable iptables >/dev/null 2>&1 
+service iptables save   
+systemctl restart iptables   
+systemctl enable iptables   
 return 1
 }
 
 function KyunWeb() {
 echo && echo -e "正在极速部署LAMP环境..."
-yum -y install httpd >/dev/null 2>&1 && rm -rf /etc/httpd/conf/httpd.conf 
+yum -y install httpd   && rm -rf /etc/httpd/conf/httpd.conf 
 mv -f /root/K/httpd.conf /etc/httpd/conf/httpd.conf && chmod 0755 -R /etc/httpd/conf/httpd.conf && rm -rf /var/www/html
 sed -i 's/8888/'${webdk}'/g' /etc/httpd/conf/httpd.conf
-yum install -y php mariadb mariadb-server php-fpm php-cli php-gd php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-devel php-xml>/dev/null 2>&1
+yum install -y php mariadb mariadb-server php-fpm php-cli php-gd php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-devel php-xml 
 sed -i 's/;date.timezone =/date.timezone = PRC/g' /etc/php.ini
-systemctl restart mariadb >/dev/null 2>&1
-systemctl enable mariadb.service >/dev/null 2>&1  
-systemctl restart httpd.service >/dev/null 2>&1
+systemctl restart mariadb  
+systemctl enable mariadb.service    
+systemctl restart httpd.service  
 rm -rf /etc/my.cnf && mv /root/K/my.cnf /etc/my.cnf &&chmod 0755 -R /etc/my.cnf
-systemctl enable httpd.service >/dev/null 2>&1  
+systemctl enable httpd.service    
 rm -rf /Data && mkdir -p /Data/wwwroot/Kyun
 echo && echo -e "正在配置后台WEB面板..."
-cd /root/ && wget --no-check-certificate https://coding.net/u/marisn/p/kuaiyun/git/raw/master/Kyun_web-3.0.zip >/dev/null 2>&1 && unzip -q ${KyWEB} && rm -rf ${KyWEB}
-wget ${HTTPWEB}/${app} >/dev/null 2>&1 && unzip -q ${app} && rm -rf ${app} 
+cd /root/ && wget --no-check-certificate https://coding.net/u/marisn/p/kuaiyun/git/raw/master/Kyun_web-3.0.zip   && unzip -q ${KyWEB} && rm -rf ${KyWEB}
+wget --no-check-certificate ${HTTPWEB}/${app}   && unzip -q ${app} && rm -rf ${app} 
 sed -i 's/222.186.171.61/'${IP}'/g' /root/Kyun/install.sql
 sed -i 's/kuaiyum.com/'${sqlpass}'/g' /root/Kyunws/config.php 
 sed -i 's/kuaiyum.com/'${sqlpass}'/g' /root/Kyun/Data/config.php
@@ -310,14 +310,14 @@ phone=NULL;">>/etc/Kyun/kypass && chmod 0777 -R /etc/Kyun/kypass
 chmod +x /etc/Kyun/* && chmod 0777 -R /root/Kyun && chmod 0777 -R /root/Kyunws/*
 mv -f /root/Kyun/* /Data/wwwroot/Kyun/ && rm -rf /root/Kyun 
 mv -f /root/Kyunws /Data/wwwroot/Kyun/Kyunws && rm -rf /Kyunws 
-yum install -y crontabs >/dev/null 2>&1 && mkdir -p /var/spool/cron && mkdir -p /Data/Ky_back
+yum install -y crontabs   && mkdir -p /var/spool/cron && mkdir -p /Data/Ky_back
 chmod 0777 -R /Data/wwwroot/Kyun/Data/cron.php
 echo '/usr/bin/mysqldump --opt -uroot -pkuaiyum.com -hlocalhost Kyml > /Data/Ky_back/`date +%F`.sql'>>/Data/Ky_back/bf.sh
 sed -i 's/kuaiyum.com/'${sqlpass}'/g' /Data/Ky_back/bf.sh
 echo "* * * * * curl --silent --compressed http://${IP}:8888/Data/cron.php">>/var/spool/cron/root 
 echo "00 05 *   * * /bin/sh /Data/Ky_back/bf.sh">>/var/spool/cron/root
 systemctl restart crond.service
-systemctl enable crond.service >/dev/null 2>&1 
+systemctl enable crond.service   
 /Data/wwwroot/Kyun/Online/Ktcp/jiankong >>/Data/wwwroot/tcp.log 2>&1 &
 /Data/wwwroot/Kyun/Online/Kudp/jiankong >>/Data/wwwroot/udp.log 2>&1 &
 /Data/wwwroot/Kyun/Online/Kudp53/jiankong >>/Data/wwwroot/udp.log 2>&1 &
@@ -327,20 +327,20 @@ echo "/Data/wwwroot/Kyun/Online/Kudp53/jiankong >>/Data/wwwroot/udp.log 2>&1 &">
 chmod 0777 -R /Data/wwwroot/Kyun/Kyunws/data/* && chmod 0777 -R /Data/wwwroot/Kyun/Kyunws/* 
 chmod 0777 -R /Data/wwwroot/Kyun/Kyunws && chmod 0777 -R /Data/wwwroot/Kyun/Data/*  
 echo && vpn && LASTLINE=`date +"%Y-%m-%d %H:%M:%S"`;echo && echo "正在安装数据库..."
-cd /Data/wwwroot/Kyun && wget ${HTTPWEB}/${phpmyadmin} >/dev/null 2>&1 && tar zxf ${phpmyadmin}
+cd /Data/wwwroot/Kyun && wget --no-check-certificate ${HTTPWEB}/${phpmyadmin}   && tar zxf ${phpmyadmin}
 rm -f phpmyadmin.tar.gz && mv phpMyAdmin-4.4.15.5-all-languages ${sql}
 chmod 0777 -R /Data/wwwroot/Kyun/Online/Ktcp/*
 chmod 0777 -R /Data/wwwroot/Kyun/Online/Kudp/*
 chmod 0777 -R /Data/wwwroot/Kyun/Online/Kudp53/*
-systemctl enable openvpn@server.service >/dev/null 2>&1  
+systemctl enable openvpn@server.service    
 return 1
 }
 
 function KyunVPN() {
 echo && echo -e "正在同步时间..." 
-systemctl stop ntpd.service >/dev/null 2>&1
-service ntpd stop >/dev/null 2>&1
-cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime >/dev/null 2>&1 
+systemctl stop ntpd.service  
+service ntpd stop  
+cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime   
 ntpServer=(
 [0]=s2c.time.edu.cn 
 [1]=cn.ntp.org.cn
@@ -351,7 +351,7 @@ ntpServer=(
 serverNum=`echo ${#ntpServer[*]}`  
 NUM=0
 for (( i=0; i<=$serverNum; i++ )); do
-ntpdate ${ntpServer[$NUM]} >/dev/null 2>&1
+ntpdate ${ntpServer[$NUM]}  
 if [ $? -eq 0 ]; then
 echo
 echo -e "当前时间：$(date -d "2 second" +"%Y-%m-%d %H:%M.%S")" 
@@ -360,48 +360,48 @@ echo -e "\e[1;31m\t\t[  错误  ]\e[0m"
 let NUM++
 fi
 done
-hwclock --systohc >/dev/null 2>&1
-systemctl start ntpd.service >/dev/null 2>&1
-service ntpd start >/dev/null 2>&1
+hwclock --systohc  
+systemctl start ntpd.service  
+service ntpd start  
 echo && echo "开始安装OpenVPN程序..."
-yum install -y openvpn telnet >/dev/null 2>&1 
-yum install -y gcc openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig expect >/dev/null 2>&1
-cd /root && wget ${HTTPWEB}/${peizhi} >/dev/null 2>&1 && unzip -q ${peizhi} && rm -rf ${peizhi} 
-wget ${HTTPWEB}/${O} >/dev/null 2>&1 && rpm -Uvh --oldpackage --force ${O} >/dev/null 2>&1 
+yum install -y openvpn telnet   
+yum install -y gcc openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig expect  
+cd /root && wget --no-check-certificate ${HTTPWEB}/${peizhi}   && unzip -q ${peizhi} && rm -rf ${peizhi} 
+wget --no-check-certificate ${HTTPWEB}/${O}   && rpm -Uvh --oldpackage --force ${O}   
 rm -rf ${O} && rm -rf /etc/openvpn && rm -rf /etc/Kyun && mkdir -p /etc/openvpn 
 mv -f /root/K/server.conf /etc/openvpn/server.conf
 mv -f /root/K/server-2.conf /etc/openvpn/server-2.conf
 mv -f /root/K/server-3.conf /etc/openvpn/server-3.conf
 mkdir -p /etc/Kyun && cd /etc/openvpn 
-wget ${HTTPWEB}/${EasyRSA} >/dev/null 2>&1 && unzip -q ${EasyRSA} && rm -rf ${EasyRSA}
+wget --no-check-certificate ${HTTPWEB}/${EasyRSA}   && unzip -q ${EasyRSA} && rm -rf ${EasyRSA}
 chmod 777 -R /etc/openvpn/easy-rsa/* && rm -rf /bin/vpn
 echo "echo -e '正在重启vpn服务...'
-killall openvpn >/dev/null 2>&1
+killall openvpn  
 systemctl stop openvpn@server.service
 systemctl start openvpn@server.service
-killall K >/dev/null 2>&1
-K -l 138 -d >/dev/null 2>&1
-K -l 137 -d >/dev/null 2>&1
-K -l 8080 -d >/dev/null 2>&1
-K -l 1194 -d >/dev/null 2>&1
-K -l 139 -d >/dev/null 2>&1
-K -l 135 -d >/dev/null 2>&1
-K -l 136 -d >/dev/null 2>&1
-K -l 53 -d >/dev/null 2>&1
-K -l 3389 -d >/dev/null 2>&1
-K -l 80 -d >/dev/null 2>&1
-K -l 1194 -d >/dev/null 2>&1
-K -l 440 -d >/dev/null 2>&1
+killall K  
+K -l 138 -d  
+K -l 137 -d  
+K -l 8080 -d  
+K -l 1194 -d  
+K -l 139 -d  
+K -l 135 -d  
+K -l 136 -d  
+K -l 53 -d  
+K -l 3389 -d  
+K -l 80 -d  
+K -l 1194 -d  
+K -l 440 -d  
 openvpn --config /etc/openvpn/server-2.conf &
 openvpn --config /etc/openvpn/server-3.conf &
-systemctl restart mariadb >/dev/null 2>&1
-systemctl restart httpd.service >/dev/null 2>&1
+systemctl restart mariadb  
+systemctl restart httpd.service  
 echo
 echo -e '服务状态               [\033[32m OK \033[0m]'
 exit">>/bin/vpn   
 chmod 0777 -R /bin/vpn
 echo && echo -e "正在安装HTTP转发..." 
-cd /root && wget ${HTTPWEB}/${porxy} >/dev/null 2>&1
+cd /root && wget --no-check-certificate ${HTTPWEB}/${porxy}  
 gcc -o udp udp.c && rm -rf ${porxy}
 mv -f /root/udp /bin/K && chmod 0777 /bin/K 
 return 1

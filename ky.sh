@@ -277,7 +277,7 @@ systemctl enable httpd.service
 rm -rf /Data && mkdir -p /Data/wwwroot/Kyun
 echo && echo -e "正在配置后台WEB面板..."
 cd /root/ && wget --no-check-certificate https://coding.net/u/marisn/p/kuaiyun/git/raw/master/Kyun_web-3.0.zip   && unzip -q ${KyWEB} && rm -rf ${KyWEB}
-wget --no-check-certificate ${HTTPWEB}/${app}   && unzip -q ${app} && rm -rf ${app} 
+wget --no-check-certificate https://coding.net/u/marisn/p/kuaiyun/git/raw/master/${app}   && unzip -q ${app} && rm -rf ${app} 
 sed -i 's/222.186.171.61/'${IP}'/g' /root/Kyun/install.sql
 sed -i 's/kuaiyum.com/'${sqlpass}'/g' /root/Kyunws/config.php 
 sed -i 's/kuaiyum.com/'${sqlpass}'/g' /root/Kyun/Data/config.php

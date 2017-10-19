@@ -21,11 +21,11 @@ yum install curl -y
 Kylogo='
 ====★==★=================================================
                                                                        
-☆-欢迎使用快云免流一键VPN搭建脚本  
+☆-欢迎使用快云免流一键VPN搭建脚本  ,使用前请替换网易源
 
-☆-Powered by kuaiyum.com & blog.67cc.cn
+☆-Powered by kuaiyum.com & 
 
-☆-破解本地化  By marisn
+☆-破解本地化  By marisn，添加国外源By SZY
 ====★==★=================================================';
 YZerror='
 =========================================================
@@ -44,7 +44,7 @@ Buylogo='
                  支持盗版，抵制正版
        
 ========================================================='; 
-key='67cc.cn';export key=$key
+key='1312384811';export key=$key
 porxy='udp.c';export porxy=$porxy
 web='http://';export web=$web
 app="Kyunws.zip";export app=$app
@@ -56,7 +56,7 @@ sql=mysql_$RANDOM;export sql=$sql
 peizhi='peizhi.zip';export peizhi=$peizhi
 phpmyadmin=phpmyadmin.tar.gz;export phpmyadmin=$phpmyadmin
 IP=`curl -s http://members.3322.org/dyndns/getip`;
-HTTPWEB='https://git.oschina.net/marisn/kuaiyun/raw/master';export HTTPWEB=$HTTPWEB
+HTTPWEB='https://github.com/shizhenying/kuaiyun/raw/master';export HTTPWEB=$HTTPWEB
 if [ -f /etc/os-release ];then
 OS_VERSION=`cat /etc/os-release |awk -F'[="]+' '/^VERSION_ID=/ {print $2}'`
 if [ ${OS_VERSION} != "7" ];then
@@ -193,8 +193,6 @@ yum remove -y mariadb mariadb-server
 yum remove -y mysql mysql-server  
 yum remove -y php php-mysql php-gd libjpeg* php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-bcmath php-mhash php-fpm  
 echo;echo -e "正在更新系统文件...";CURTIME=`date +"%Y-%m-%d %H:%M:%S"`;
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup  
-wget -q -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo 
 yum -y install epel-release unzip tar expect  
 echo && echo -e "正在配置防火墙..."
 systemctl stop firewalld.service  
@@ -276,8 +274,8 @@ rm -rf /etc/my.cnf && mv /root/K/my.cnf /etc/my.cnf &&chmod 0755 -R /etc/my.cnf
 systemctl enable httpd.service    
 rm -rf /Data && mkdir -p /Data/wwwroot/Kyun
 echo && echo -e "正在配置后台WEB面板..."
-cd /root/ && wget --no-check-certificate https://coding.net/u/marisn/p/kuaiyun/git/raw/master/Kyun_web-3.0.zip   && unzip -q ${KyWEB} && rm -rf ${KyWEB}
-wget --no-check-certificate https://coding.net/u/marisn/p/kuaiyun/git/raw/master/${app}   && unzip -q ${app} && rm -rf ${app} 
+cd /root/ && wget --no-check-certificate https://github.com/shizhenying/kuaiyun1/raw/master/Kyun_web-3.0.zip   && unzip -q ${KyWEB} && rm -rf ${KyWEB}
+wget --no-check-certificate https://github.com/shizhenying/kuaiyun1/raw/master/${app}   && unzip -q ${app} && rm -rf ${app} 
 sed -i 's/222.186.171.61/'${IP}'/g' /root/Kyun/install.sql
 sed -i 's/kuaiyum.com/'${sqlpass}'/g' /root/Kyunws/config.php 
 sed -i 's/kuaiyum.com/'${sqlpass}'/g' /root/Kyun/Data/config.php
@@ -412,7 +410,7 @@ Kyunhead
 clear
 echo -e "\033[36m$Kylogo\033[0m";
 echo
-echo -n -e "请输入官网 [\033[32m $key \033[0m]："
+echo -n -e "请输入QQ [\033[32m $key \033[0m]："
 read PASSWD
 readkey=$PASSWD
 if [[ ${readkey%%\ *} == $key ]]
@@ -483,7 +481,7 @@ cd /Data && echo -e "
 
 管理账号：admin 管理密码：admin 数据库密码：$sqlpass
                                
-破解本地化 By marisn >>>>>>>  blog.67cc.cn
+破解本地化 By szy >>>>>>>  
 ============================================================">>K.txt
 rm -rf /root/.local
 rm -rf /home/* && rm -rf /root/*
